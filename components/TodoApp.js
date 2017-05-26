@@ -46,6 +46,11 @@
       };
       render();
 
+      todoList.addEventListener("op-remove-item", e => {
+        this.state.items.splice(e.detail, 1);
+        render();
+      });
+
       form.addEventListener("submit", e => {
         e.preventDefault();
 

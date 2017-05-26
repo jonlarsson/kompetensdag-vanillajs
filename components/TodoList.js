@@ -14,16 +14,23 @@
       this.init();
       for (let i = this.ul.children.length; i < items.length; i++) {
         const li = document.createElement("li");
-        li.appendChild(document.createTextNode(""));
+        const itemElement = document.createElement("op-todo-item");
+
+        itemElement.addEventListener("op-remove-click", e => {
+          const event = new CustomEvent("op-remove-item", {detail: i});
+          this.dispatchEvent(event);
+        });
+
+        li.appendChild(itemElement);
         this.ul.appendChild(li);
       }
 
-      [].slice.call(this.children, items.length, this.ul.children.length).forEach(child => this.ul.removeChild(child));
+      const childrenToRemove = [].slice.call(this.ul.children, items.length, this.ul.children.length);
+      childrenToRemove.forEach(child => this.ul.removeChild(child));
 
       items.forEach((item, index) => {
         const li = this.ul.children[index];
-        li.firstChild.textContent = item.text;
-        li.setAttribute("key", item.key);
+        li.firstChild.render(item.text);
       });
     }
   }
