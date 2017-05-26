@@ -1,4 +1,6 @@
-import {Duck} from "./Duck";
+(function () {
+  const Duck = APP.Duck;
 
-const donald = new Duck();
-donald.quack();
+  const donald = new Duck();
+  donald.quack();
+})();

@@ -1,8 +1,13 @@
-export class Duck {
+(function () {
+  (function () {
+    class Duck {
 
-  quack() {
-    console.log("quack quack !!")
-  }
-}
+      quack() {
+        console.log("quack quack !!")
+      }
+    }
 
-APP.Duck = Duck;
+    APP.Duck = Duck;
+  }) ();
+})();
+
