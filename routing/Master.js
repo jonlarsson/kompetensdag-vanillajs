@@ -1,5 +1,5 @@
 (function () {
-
+  const Link = ReactRouterDOM.Link;
   class Master extends React.Component {
     render() {
       return (
