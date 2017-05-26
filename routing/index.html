@@ -3,21 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Hello World</title>
-    <script>
-      window.APP = {};
-    </script>
-    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <script type="text/babel" src="Detail.js"></script>
-    <script type="text/babel" src="Master.js"></script>
-    <script type="text/babel" src="ListApp.js"></script>
+    <script src="Detail.js"></script>
+    <script src="Master.js"></script>
+    <script src="ListApp.js"></script>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-  ReactDOM.render(React.createElement(APP.ListApp), document.getElementById('root'));
-</script>
+<op-list-app></op-list-app>
 </body>
 </html>

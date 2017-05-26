@@ -1,18 +1,30 @@
 (function () {
-  const Link = ReactRouterDOM.Link;
-  class Detail extends React.Component {
+  class Detail extends HTMLElement {
     constructor() {
       super();
     }
 
-    render() {
-      return (
-          <div>
-            <Link to="/">Tillbaka</Link>
-            <p>Detaljer för {this.props.match.params.id}</p>
-          </div>
-      )
+    init() {
+      if (this.detailText) return;
+      const a = document.createElement("a");
+      a.setAttribute("href", "#/");
+      a.appendChild(document.createTextNode("Tillbaka"));
+
+      const p = document.createElement("p");
+      const detailText = document.createTextNode("");
+      p.appendChild(detailText);
+
+      this.appendChild(a);
+      this.appendChild(p);
+
+      this.detailText = detailText;
+    }
+
+    render(detailId) {
+      this.init();
+
+      this.detailText.textContent = "Detaljer för " + detailId;
     }
   }
-  APP.Detail = Detail;
+  window.customElements.define("op-detail", Detail)
 })();

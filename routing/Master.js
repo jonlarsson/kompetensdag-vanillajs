@@ -1,16 +1,29 @@
 (function () {
 
-  class Master extends React.Component {
+  class Master extends HTMLElement {
+
+
     render() {
-      return (
-          <ul>
-            <li><Link to="/detail/1">Item 1</Link></li>
-            <li><Link to="/detail/2">Item 2</Link></li>
-            <li><Link to="/detail/3">Item 3</Link></li>
-          </ul>
-      );
+      if (this.firstChild) return;
+
+      const ul = document.createElement("ul");
+
+      const createLi = id => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.setAttribute("href", "#/detail/" + id);
+        a.appendChild(document.createTextNode("Item " + id));
+        li.appendChild(a);
+        return li;
+      };
+
+      ul.appendChild(createLi(1));
+      ul.appendChild(createLi(2));
+      ul.appendChild(createLi(3));
+
+      this.appendChild(ul);
     }
   }
 
-  APP.Master = Master;
+  window.customElements.define("op-master", Master)
 })();
