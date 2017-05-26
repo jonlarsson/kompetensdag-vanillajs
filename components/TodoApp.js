@@ -1,42 +1,62 @@
 (function () {
-  const TodoList = APP.TodoList;
-
-  class TodoApp extends React.Component {
+  class TodoApp extends HTMLElement {
     constructor(props) {
       super(props);
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.state = {items: [], text: ''};
+
+      this.state = {items: [], text: ""};
     }
 
-    render() {
-      return (
-          <div>
-            <h3>TODO</h3>
-            <TodoList items={this.state.items}/>
-            <form onSubmit={this.handleSubmit}>
-              <input onChange={this.handleChange} value={this.state.text}/>
-              <button>{'Add #' + (this.state.items.length + 1)}</button>
-            </form>
-          </div>
-      );
+    connectedCallback() {
+      this.init()
     }
 
-    handleChange(e) {
-      this.setState({text: e.target.value});
+    removeAllChildren() {
+      while (this.firstChild) {
+        this.removeChild(this.firstChild);
+      }
     }
 
-    handleSubmit(e) {
-      e.preventDefault();
-      const newItem = {
-        text: this.state.text,
-        id: Date.now()
+    init() {
+      const div = document.createElement("div");
+
+      const h3 = document.createElement("h3");
+      h3.appendChild(document.createTextNode("TODO"));
+
+      const form = document.createElement("form");
+      const input = this.input || document.createElement("input");
+      input.value = this.state.text;
+      const button = document.createElement("button");
+      const buttonText = document.createTextNode("");
+      button.appendChild(buttonText);
+      form.appendChild(input);
+      form.appendChild(button);
+
+      const todoList = document.createElement("op-todo-list");
+
+      div.appendChild(h3);
+      div.appendChild(form);
+      div.appendChild(todoList);
+
+      todoList.render(this.state.items);
+
+      const render = () => {
+        todoList.render(this.state.items);
+        buttonText.textContent = "Add #" + (this.state.items.length + 1);
+        input.value = this.state.text;
       };
-      this.setState((prevState) => ({
-        items: prevState.items.concat(newItem),
-        text: ''
-      }));
+      render();
+
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+
+        this.state.items.push({id: Date.now(), text: input.value});
+        this.state.text = "";
+
+        render();
+      });
+
+      this.appendChild(div);
     }
   }
-  APP.TodoApp = TodoApp;
+  customElements.define('op-todo-app', TodoApp);
 })();
