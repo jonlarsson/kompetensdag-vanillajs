@@ -4,5 +4,3 @@ export class Duck {
     console.log("quack quack !!")
   }
 }
-
-APP.Duck = Duck;
