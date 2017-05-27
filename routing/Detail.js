@@ -3,6 +3,7 @@
     static get observedAttributes() {
       return ['detail-id'];
     }
+
     constructor() {
       super();
       console.log("constructed")
@@ -35,7 +36,7 @@
       this.init();
 
       this.detailText.textContent = "Detaljer för " + detailId;
-  }
+    }
   }
   window.customElements.define("op-detail", Detail)
 })();
