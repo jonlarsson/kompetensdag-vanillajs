@@ -4,7 +4,6 @@
   const Router = ReactRouterDOM.HashRouter;
   const Route = ReactRouterDOM.Route;
 
-  console.log(!!Master, !!Detail, !!Router, !!Route);
   class ListApp extends React.Component {
     constructor(props) {
       super(props);
