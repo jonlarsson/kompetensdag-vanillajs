@@ -6,11 +6,9 @@
 
     constructor() {
       super();
-      console.log("constructed")
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      console.log(name, "changed")
       if (name === "detail-id") {
         this.render(newValue);
       }
