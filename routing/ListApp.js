@@ -22,7 +22,7 @@
       if (path.match(/\/detail\/([0-9]+)/)) {
         const match = path.match(/\/detail\/([0-9]+)/);
         const id = match[1];
-        detail.render(id);
+        detail.setAttribute("detail-id", id);
         this.appendChild(detail);
       } else {
         master.render();
