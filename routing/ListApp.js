@@ -1,6 +1,6 @@
 (function () {
-  const Master = APP.Master;
-  const Detail = APP.Detail;
+  const Master = props => <div><op-master></op-master></div>;
+  const Detail = props => <div><op-detail detail-id={props.match.params.id}></op-detail></div>;
   const Router = ReactRouterDOM.HashRouter;
   const Route = ReactRouterDOM.Route;
 
