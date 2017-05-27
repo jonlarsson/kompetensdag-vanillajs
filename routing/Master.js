@@ -2,6 +2,13 @@
 
   class Master extends HTMLElement {
 
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.render();
+    }
 
     render() {
       if (this.firstChild) return;
